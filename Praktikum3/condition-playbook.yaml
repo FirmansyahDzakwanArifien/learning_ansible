@@ -1,0 +1,16 @@
+---
+- name: Condition On Ansible
+  hosts: vbox
+  gather_facts: yes
+  tasks:
+    - name: Menampilkan pesan hanya jika sistem adalah Ubuntu
+      debug:
+        msg: "Ini adalah sistem berbasis Ubuntu"
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Membuat direktori hanya jika belum ada
+      file:
+        path: /tmp/ansible-test
+        state: directory
+        mode: '0755'
+      when: not ansible_facts['distribution'] == "CentOS"
