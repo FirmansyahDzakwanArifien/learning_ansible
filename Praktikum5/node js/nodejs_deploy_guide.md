@@ -47,8 +47,8 @@ server.listen(port, hostname, () => {
 Buat file `inventory.ini` untuk mendefinisikan server target (misalnya bernama group `NFA`):
 
 ```ini
-[NFA]
-192.168.1.100 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_rsa=user
+[nama-hosts]
+ip_managed_node ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_rsa=host
 ```
 
 > Ganti `192.168.1.100` dengan IP server target dan sesuaikan dengan user serta key SSH yang kamu gunakan.
