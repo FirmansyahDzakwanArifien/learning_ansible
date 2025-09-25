@@ -1,0 +1,37 @@
+- name: Deploy Node.js Application
+  hosts: NFA
+  tasks:
+    - name: Install Node.js & npm
+      apt:
+        name: 
+        - nodejs
+        - npm
+        state: present
+      become: yes
+
+    - name: Copy App Files
+      copy:
+        src: /path/to/local/app/app.js
+        dest: /home/.../app.js
+      become: yes
+
+    - name: Copy Package.json
+      copy:
+        src: /path/to/local/app/package.json
+        dest: /home/.../package.json
+      become: yes
+
+    - name: Install App Dependencies
+      npm:
+        path: /home/...
+        state: present
+      become: yes
+
+    - name: Start Application
+      command: node /var/www/myapp/app.js
+      async: 10
+      poll: 0
+
+# Notes :
+# src harus menyesuaikan dengan path file aplikasi di Ansible controller, misalnya /home/user/projects/myapp/app.js
+# dest harus menyesuaikan dengan lokasi di server managed node, misalnya /var/www/myapp/app.js
